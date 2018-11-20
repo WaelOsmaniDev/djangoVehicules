@@ -1,0 +1,19 @@
+{% load static %}
+<!doctype html><html lang="fr"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Garage</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <script defer src="{% static 'fontawesome/js/fontawesome-all.min.js' %}"></script>
+</head><body>
+
+<div class="container-fluid">
+{% block content %}
+<p>Bienvenue !</p>
+{% endblock %}
+</div>
+
+<script src="{% static 'bootstrap/js/jquery.min.js' %}"></script>
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</body></html>
