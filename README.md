@@ -1,2 +1,2 @@
 # djangoVehicules
-Web application using Django to manage vehicules
+Web application using Django to manage vehicles
