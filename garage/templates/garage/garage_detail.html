@@ -1,0 +1,30 @@
+{% extends "garage/home_v3.html" %}
+{% block content %}
+    <h1>{{ garage.nom }}</h1>
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <td>Adresse</td>
+            <td>{{ garage.adresse }}</td>
+        </tr>
+        <tr>
+            <td>Mail</td>
+            <td>{{ garage.mail }}</td>
+        </tr>
+        <tr>
+            <td>Téléphone</td>
+            <td>{{ garage.telephone }}</td>
+        </tr>
+        <tr>
+            <td>Créateur</td>
+            <td>{{ garage.createur }}</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <a href="{% url 'garage:garage-update' garage.pk %}" class="btn btn-primary" role="button">Modifier</a>
+                <a href="{% url 'garage:garage-delete' garage.pk %}" class="btn btn-danger" role="button">Supprimer</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}

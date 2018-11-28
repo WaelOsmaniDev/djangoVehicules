@@ -1,0 +1,11 @@
+{% extends "garage/home_v3.html" %}
+{% block content %}
+    <h1>Suppression</h1>
+    <form method="post">{% csrf_token %}
+        <p>Êtes-vous sûr de vouloir supprimer le véhicule '{{ object.nom }}' ?</p>
+        <a href="{% url 'garage:vehicule-detail' object.pk %}" class="btn btn-primary" role="button">Annuler</a>
+        <button class="btn btn-danger" type="submit">
+            Supprimer
+        </button>
+    </form>
+{% endblock %}

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 
 def user_directory_path(instance, filename):
@@ -20,6 +21,9 @@ class Garage(models.Model):
     def __str__(self):
         return self.nom
 
+    def get_absolute_url(self):
+        return reverse('garage:garage-list')
+
 
 class Vehicule(models.Model):
     marque = models.CharField(max_length=32)
@@ -38,6 +42,9 @@ class Vehicule(models.Model):
             return f"{msg} ({self.immatriculation})"
         return msg
 
+    def get_absolute_url(self):
+        return reverse('garage:vehicule-list')
+
 
 class AFaire(models.Model):
     description = models.CharField(max_length=64)
@@ -55,3 +62,6 @@ class Entretien(models.Model):
     montant = models.DecimalField(decimal_places=2, max_digits=8)
     facture = models.FileField(upload_to=user_directory_path, null=True, blank=True)
     createur = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+

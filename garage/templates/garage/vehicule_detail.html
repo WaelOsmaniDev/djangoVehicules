@@ -1,0 +1,32 @@
+{% extends "garage/home_v3.html" %}
+{% block content %}
+    <h1>{{ vehicule.marque }} {{ vehicule.modele }} de {{ vehicule.proprietaire }}</h1>
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <td>Marque</td>
+            <td>{{ vehicule.marque }}</td>
+        </tr>
+        <tr>
+            <td>Modèle</td>
+            <td>{{ vehicule.modele }}</td>
+        </tr>
+        <tr>
+            <td>Immatriculation</td>
+            <td>{{ vehicule.immatriculation }}</td>
+        </tr>
+        <tr>
+            <td>Propriétaire</td>
+            <td>{{ vehicule.proprietaire }}</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <a href="{% url 'garage:vehicule-update' vehicule.pk %}"
+                   class="btn btn-primary" role="button">Modifier</a>
+                <a href="{% url 'garage:vehicule-delete' vehicule.pk %}"
+                   class="btn btn-danger" role="button">Supprimer</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}
