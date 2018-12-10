@@ -1,7 +1,11 @@
-from django.shortcuts import render
+from django.contrib import messages
+from django.core.mail import send_mail
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import generic
-from django.views.generic import edit
+from django.views.generic import edit, FormView
+
+from garage.forms import ContactForm
 from .models import Garage, Vehicule
 
 
@@ -82,3 +86,26 @@ class VehiculeDelete(MenuVehicule, edit.DeleteView):
     model = Vehicule
     success_url = reverse_lazy('garage:vehicule-list')
 
+
+def vehicule_visible(request, pk):
+    vehicule = get_object_or_404(Vehicule, pk=pk)
+    if request.user == vehicule.proprietaire:
+        vehicule.toggle_visible()
+        messages.success(request, "Modification enregistrée")
+    else:
+        messages.error(request, "Accès non autorisé")
+    return redirect('garage:vehicule-detail', pk)
+
+
+class ContactView(FormView):
+    template_name = 'garage/contact.html'
+    form_class = ContactForm
+    success_url = reverse_lazy('garage:home')
+
+    def form_valid(self, form):
+        sujet = form.cleaned_data['sujet']
+        message = form.cleaned_data['message']
+        send_mail(sujet, message, self.request.user.email,
+                  ['admin@example.com'])
+        messages.success(self.request, "Mail envoyé !")
+        return super().form_valid(form)

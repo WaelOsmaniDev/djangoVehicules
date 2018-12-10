@@ -1,4 +1,5 @@
 {% load static %}
+{% load hijack_tags %}
 <!doctype html>
 <html lang="fr">
 <head>
@@ -41,6 +42,16 @@
 </nav>
 
 <div class="container-fluid">
+{% hijack_notification %}
+    {% for message in messages %}
+        {% if message.tags == "error" %}
+            <div class="alert alert-danger" role="alert">
+        {% else %}
+            <div class="alert alert-{{ message.tags }}"
+            role="alert">
+        {% endif %}
+        {{ message }}</div>
+    {% endfor %}
     {% block content %}
         <p>Bienvenue !</p>
     {% endblock %}

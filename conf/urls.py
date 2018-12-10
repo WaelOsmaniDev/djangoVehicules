@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('garage.urls', namespace="garage")),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('hijack/', include('hijack.urls', namespace='hijack'))
 ]

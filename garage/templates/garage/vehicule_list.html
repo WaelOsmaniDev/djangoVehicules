@@ -23,6 +23,7 @@
                 <td>{{ vehicule.modele }}</td>
                 <td>{{ vehicule.immatriculation }}</td>
                 <td>{{ vehicule.proprietaire }}</td>
+                <td>{% include 'garage/object_visible.html' with object=vehicule only %}</td>
             </tr>
         {% empty %}
             <tr>

@@ -9,6 +9,9 @@ ipython = "*"
 django-extensions = "*"
 fontawesome = "*"
 django-bootstrap-static = "*"
+hijack = "*"
+django-hijack-admin = "*"
+django-hijack = "*"
 
 [dev-packages]
 pytest = "*"

@@ -20,6 +20,14 @@
             <td>{{ vehicule.proprietaire }}</td>
         </tr>
         <tr>
+            <td>Visible</td>
+            <td>
+                <a href="{% url 'garage:vehicule-visible' vehicule.pk %}">
+                    {% include 'garage/object_visible.html' with object=vehicule only %}
+                </a>
+            </td>
+        </tr>
+        <tr>
             <td colspan="2">
                 <a href="{% url 'garage:vehicule-update' vehicule.pk %}"
                    class="btn btn-primary" role="button">Modifier</a>

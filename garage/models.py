@@ -1,6 +1,10 @@
+import logging
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+
+LOG = logging.getLogger(__name__)
 
 
 def user_directory_path(instance, filename):
@@ -44,6 +48,11 @@ class Vehicule(models.Model):
 
     def get_absolute_url(self):
         return reverse('garage:vehicule-list')
+
+    def toggle_visible(self):
+        self.visible = not self.visible
+        LOG.info(f"changement état {self.id}: {self.visible}")
+        self.save()
 
 
 class AFaire(models.Model):
