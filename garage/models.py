@@ -26,7 +26,7 @@ class Garage(models.Model):
         return self.nom
 
     def get_absolute_url(self):
-        return reverse('garage:garage-list')
+        return reverse('garage:garage-detail', kwargs={'pk': self.pk})
 
 
 class Vehicule(models.Model):
@@ -47,7 +47,7 @@ class Vehicule(models.Model):
         return msg
 
     def get_absolute_url(self):
-        return reverse('garage:vehicule-list')
+        return reverse('garage:vehicule-detail', kwargs={'pk': self.pk})
 
     def toggle_visible(self):
         self.visible = not self.visible

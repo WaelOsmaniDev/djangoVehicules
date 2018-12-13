@@ -1,3 +1,5 @@
+import logging
+
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404, redirect
@@ -8,6 +10,7 @@ from django.views.generic import edit, FormView
 from garage.forms import ContactForm
 from .models import Garage, Vehicule
 
+LOG = logging.getLogger(__name__)
 
 def home(request):
     """Page Accueil"""
@@ -80,6 +83,16 @@ class VehiculeUpdate(MenuVehicule, edit.UpdateView):
     model = Vehicule
     fields = ['marque', 'modele', 'immatriculation', 'proprietaire']
     template_name = "garage/vehicule_update.html"
+
+    def form_valid(self, form):
+        if form.instance.proprietaire != self.request.user:
+            messages.warning(self.request, "Vous ne pouvez modifier ce véhicule")
+            return redirect('garage:vehicule-detail', form.instance.pk)
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        LOG.warning(f"Not Valid Form {form.instance}")
+        return redirect('garage:vehicule-detail', form.instance.pk)
 
 
 class VehiculeDelete(MenuVehicule, edit.DeleteView):
