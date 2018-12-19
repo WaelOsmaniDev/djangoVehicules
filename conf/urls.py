@@ -16,9 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from garage.api_v1 import router
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('garage.urls', namespace="garage")),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('hijack/', include('hijack.urls', namespace='hijack'))
+    path('hijack/', include('hijack.urls', namespace='hijack')),
+    path('api/', include(router.urls)),
 ]

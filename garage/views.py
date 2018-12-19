@@ -81,7 +81,7 @@ class VehiculeDetail(MenuVehicule, generic.DetailView):
 
 class VehiculeUpdate(MenuVehicule, edit.UpdateView):
     model = Vehicule
-    fields = ['marque', 'modele', 'immatriculation', 'proprietaire']
+    fields = ['marque', 'modele', 'immatriculation', 'proprietaire', 'mise_en_circulation']
     template_name = "garage/vehicule_update.html"
 
     def form_valid(self, form):
@@ -92,7 +92,7 @@ class VehiculeUpdate(MenuVehicule, edit.UpdateView):
 
     def form_invalid(self, form):
         LOG.warning(f"Not Valid Form {form.instance}")
-        return redirect('garage:vehicule-detail', form.instance.pk)
+        return redirect('garage:vehicule-list')
 
 
 class VehiculeDelete(MenuVehicule, edit.DeleteView):

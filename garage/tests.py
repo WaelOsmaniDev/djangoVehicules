@@ -95,12 +95,14 @@ class URLUserTest(TestCase):
                                     {'mise_en_circulation': 2018,
                                      'marque': self.vehicule1.marque,
                                      'modele': self.vehicule1.modele,
-                                     'proprietaire': self.vehicule1.proprietaire,
+                                     'proprietaire': self.vehicule1.proprietaire.pk,
                                      'visible': self.vehicule1.visible
                                      })
+        print(Vehicule.objects.get(pk=self.vehicule1.pk).mise_en_circulation)
         self.assertRedirects(response, uri_detail)
         self.vehicule1 = Vehicule.objects.get(pk=self.vehicule1.pk)
         self.assertEqual(2018, self.vehicule1.mise_en_circulation)
+
 
     def test_garage_create(self):
         uri_create = reverse('garage:garage-create')

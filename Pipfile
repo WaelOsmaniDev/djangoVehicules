@@ -12,6 +12,7 @@ django-bootstrap-static = "*"
 hijack = "*"
 django-hijack-admin = "*"
 django-hijack = "*"
+djangorestframework = "*"
 
 [dev-packages]
 pytest = "*"
